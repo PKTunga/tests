@@ -1,0 +1,18 @@
+
+
+            # 'UserFullName':event['UserFullName'],
+            # 'CompanyName':event['CompanyName'],
+            # 'WOId':event['WOId'],
+            # 'WONumber':event['WONumber'],
+            # 'LoadInfo':event['LoadInfo'],
+            # 'PickupDateTime':event['PickupDateTime'],
+            # 'DeliveryDateTime':event['DeliveryDateTime'],
+            # 'StopType':event['StopType'],
+            # 'StopId':event['StopId'],
+            # 'StopNumber':event['StopNumber'],
+            # 'FacilityName':event['Facility Name'],
+            # 'City':event['City'],
+            # 'State':event['State'],
+            # 'PONumber':event['PONumber'],
+            # 'Temperature':event['Temperature'],
+            # 'Notes':event['Notes'],

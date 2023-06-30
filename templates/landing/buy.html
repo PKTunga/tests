@@ -1,0 +1,223 @@
+
+  {% load static %}
+  {% load crispy_forms_tags %}
+  
+  {% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GOLD VPS PROXY SERVICES </title>
+  <meta content="" name="description">
+  <meta content="" name="GOLD VPS PROXY SERVICES India">
+
+  <!-- Favicons -->
+  {% comment %} <link href="{% static 'ii/img/favicon.png' %}" rel="icon"> {% endcomment %}
+  <link href="{% static 'ii/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'ii/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'ii/css/style.css' %}" rel="stylesheet">
+  <style>
+    .float{
+      position:fixed;
+      width:60px;
+      height:60px;
+      bottom:20px;
+      left:40px;
+      background-color:#25d366;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      font-size:30px;
+      box-shadow: 2px 2px 3px #999;
+      z-index:100;
+    }
+    
+    .my-float{
+      margin-top:16px;
+    }
+  
+  </style>
+  <!-- =======================================================
+  * Template Name: Restaurantly - v3.8.0
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+
+  <main id="main">
+
+
+
+
+
+
+        <!-- ======= Events Section ======= -->
+        <section id="events" class="events mt-5">
+          <div class="container mt-5" data-aos="fade-up">
+    
+            <div class="section-title mt-5 ">
+              <h2>Package Details</h2>
+            
+            </div>
+    
+            <div class="events-slider swiper " data-aos="fade-up" data-aos-delay="100">
+              <div class="swiper-wrapper">
+    
+                <div class="swiper-slide">
+                  
+                  <div class="row">
+                    <div class="col-1">
+              
+                    </div>
+              
+                    <div class="col-8">
+
+                    </div>
+                  </div>
+                  <div class="row event-item">
+                    <div class="col-lg-6">
+                      <img src="{% static 'landing/banner.jpg' %}" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 content">
+
+                      <h3>{{ package.title | title }}</h3>
+                      <div class="price">
+                        <p><span>Rs.{{ package.price | intcomma }} </span></p>
+                      </div>
+                   
+                      <ul>
+                        {{ package.features |linebreaks}}
+                      </ul>
+
+                    
+                      {% if messages %}
+                      <div class="alert alert-info">
+                      <ul class="messages">
+                        {% for message in messages %}
+                        <div class="callout callout-danger">
+                          <h5><i class="fas fa-info"></i> Message</h5>
+                          {{ message }}
+                        </div>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                      {% endif %}
+                  
+
+
+                      <form
+                      method="get"
+                      action="{% url 'checkout' pk=package.id %}"
+                    >
+                      {% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="pwd">Coupon Code:</label>
+                        <input type="text" name="coupon" class="form-control" >
+                      </div>
+
+                      <br />
+  
+
+                      <button type="submit" style="border: none;" class="btn btn-primary">
+                        Checkout
+                      </button>
+                    </form>
+  
+
+
+
+
+
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+    
+       
+              </div>
+             
+            </div>
+    
+          </div>
+        </section><!-- End Events Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  </main><!-- End #main -->
+
+
+  {% include 'includes/footer.html' %}
+
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'ii/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'ii/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'ii/js/main.js' %}"></script>
+
+  <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6311c37337898912e966c9b1/1gbum6vaq';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+
+</body>
+
+</html>

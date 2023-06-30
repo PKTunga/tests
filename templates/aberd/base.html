@@ -1,0 +1,450 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>GOLD VPS PROXY</title>
+
+    <!-- Fontfaces CSS-->
+    <link href="{% static 'aberdare/css/font-face.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/font-awesome-5/css/fontawesome-all.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link href="{% static 'aberdare/vendor/bootstrap-4.1/bootstrap.min.css' %}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'aberdare/vendor/animsition/animsition.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/wow/animate.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/css-hamburgers/hamburgers.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/slick/slick.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'aberdare/vendor/perfect-scrollbar/perfect-scrollbar.css' %}" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
+  
+  
+  
+    <!-- Main CSS-->
+    <link href="{% static 'aberdare/css/theme.css' %}" rel="stylesheet" media="all">
+
+    <style>
+        li a {text-transform:capitalize;}
+
+        .active {
+            color: blue;
+        }
+   
+        input {
+            border: solid #ebe5e5; 
+        }
+        </style>
+
+</head>
+
+<body class="animsition">
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a href="{% url 'index' %}">
+                            GOLD VPS PROXY                </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+
+
+                        {% if request.user.is_admin %}
+        
+                        <li>
+                            <a href="{% url 'superuser_accounts' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>Superuser Accounts</a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'vps_view_summary_control_panel' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>VPS View Summary</a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'proxy_view_summary' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>PROXY View Summary</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'manual_proxy' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Manual PROXY</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'upload_csv' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-upload"></i>Upload CSV</a>
+                        </li>
+                        {% endif %}
+            
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="{% url 'index' %}">
+                    GOLD VPS PROXY                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+                        
+                        {% if request.user.is_admin %}
+
+                        <li class="{% block active_home_cp_proxy %} {% endblock active_home_cp_proxy %} ">
+                            <a href="{% url 'control_panel' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+                        
+                        <li class="{% block active_spu_proxy %} {% endblock active_spu_proxy %} ">
+                            <a href="{% url 'user_accounts' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>User Accounts</a>
+                        </li>
+
+                        <li class="{% block active_marketers %} {% endblock active_marketers %} ">
+                            <a href="{% url 'superuser_accounts' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>Superuser Accounts</a>
+                        </li>
+
+                        <li class="{% block active_referrals %} {% endblock active_referrals %} ">
+                            <a href="{% url 'referrals' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>Referrals</a>
+                        </li>
+                               
+                        <li class="{% block active_orders %} {% endblock active_orders %} ">
+                            <a href="{% url 'all_orders' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-shopping-cart"></i>Orders</a>
+                        </li>
+
+                        <li class="{% block active_cp_vps %} {% endblock active_cp_vps %} ">
+                            <a href="{% url 'vps_view_summary_control_panel' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>VPS View Summary</a>
+                        </li>
+
+                        <li class="{% block active_manual_vps %} {% endblock active_manual_vps %} " >
+                            <a href="{% url 'vps_manual_control_panel' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Manual VPS</a>
+                        </li>
+
+
+                        <li class="{% block active_cp_proxy %} {% endblock active_cp_proxy %} ">
+                            <a href="{% url 'proxy_view_summary' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>PROXY View Summary</a>
+                        </li>
+
+                        <li class="{% block active_manual_proxy %} {% endblock active_manual_proxy %} " >
+                            <a href="{% url 'manual_proxy' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Manual PROXY</a>
+                        </li>
+
+                        <li class="{% block active_uploads_proxy %} {% endblock active_uploads_proxy %} ">
+                            <a href="{% url 'upload_csv' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-upload"></i>Upload Proxy CSV</a>
+                        </li>
+
+
+                        <li class="{% block active_cp_vpn %} {% endblock active_cp_vpn %} ">
+                            <a href="{% url 'vpn_view_summary' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>VPN View Summary</a>
+                        </li>
+
+
+                        <li class="{% block active_manual_vpn %} {% endblock active_manual_vpn %} " >
+                            <a href="{% url 'manual_vpn' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Manual VPN</a>
+                        </li>
+
+
+                        <li class="{% block active_templates %} {% endblock active_templates %} ">
+                            <a href="{% url 'templates' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Templates</a>
+                        </li>
+
+
+                        <li class="{% block active_accounts %} {% endblock active_accounts %} ">
+                            <a href="{% url 'aws_accounts' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Accounts</a>
+                        </li>
+
+                        <li class="{% block active_packages %} {% endblock active_packages %} ">
+                            <a href="{% url 'add_package' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Packages</a>
+                        </li>
+
+
+                        <li class="{% block active_coupons %} {% endblock active_coupons %} ">
+                            <a href="{% url 'add_coupon' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-shopping-cart"></i>Coupons</a>
+                        </li>
+
+
+
+
+          
+
+                        <li class="{% block active_contact_details %} {% endblock active_contact_details %} ">
+                            <a href="{% url 'add_contact_details' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-map"></i>Contact Details</a>
+                        </li>
+                     
+
+                        
+
+                        {% elif request.user.is_superuser %}
+
+
+                        <li class="{% block active_spu_home %} {% endblock active_spu_home %} ">
+                            <a href="{% url 'superuser_accounts' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>Home</a>
+                        </li>
+        
+                        <li class="{% block active_create_instance %} {% endblock active_create_instance %} ">
+                            <a href="{% url 'buy_now' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-shopping-cart"></i>Buy Now</a>
+                        </li>
+
+
+
+                        
+                        <li class="{% block active_vps_history_spu %} {% endblock active_vps_history_spu %}  ">
+                            <a href="{% url 'vps_history_spu' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>VPS History</a>
+                        </li>
+
+                        <li class="{% block active_proxy_history_spu %} {% endblock active_proxy_history_spu %}  ">
+                            <a href="{% url 'proxies_history_spu' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>Proxy History</a>
+                        </li>
+
+
+                        <li class="{% block active_vpn_history_spu %} {% endblock active_vpn_history_spu %} ">
+                            <a href="{% url 'vpn_history_spu' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-file"></i>VPN History</a>
+                        </li>
+
+
+                        {% if request.user.is_marketer %}
+        
+                        <li class="{% block active_my_referrals %} {% endblock active_my_referrals %} ">
+                            <a href="{% url 'my_referrals' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>My Referrals</a>
+                        </li>
+                        {% endif %}
+
+
+
+                        {% else %}
+
+
+                        <li class="{% block active_user_dashboard %} {% endblock active_user_dashboard %} ">
+                            <a href="{% url 'user_dashboard' %}" style="text-transform: capitalize;">
+                                <i class="fas fa-users"></i>Home</a>
+                        </li>
+
+
+          
+                 
+                        {% endif %}
+            
+                      
+                      
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop" style="">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                           
+                            </form>
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+                                    </div>
+
+                                    <div class="noti__item js-item-menu">
+                                    </div>
+                                 
+                                
+                                    <div class="noti__item js-item-menu">
+                                        {% comment %} <i class="zmdi zmdi-notifications"></i>
+                                        <span class="quantity">0</span>
+                                        <div class="notifi-dropdown js-dropdown">
+                                            <div class="notifi__title">
+                                                <p>You have 0 Notifications</p>
+                                            </div>
+                                       
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                     
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#">{{ user }}</a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                       
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#">{{ user }}</a>
+                                                    </h5>
+                                                    <span class="email">{{ user.email }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                             
+                                                <div class="account-dropdown__item">
+                                                    <a href="{% url 'settings' %}">
+                                                        <i class="zmdi zmdi-settings"></i>Update Profile</a>
+                                                </div>
+                                            
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="/accounts/logout/">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class=" section__content--p30">
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-1">
+                      
+                            </div>
+                      
+                            <div class="col-8">
+                               
+                              {% if messages %}
+                              <div class="alert alert-info">
+                              <ul class="messages">
+                                {% for message in messages %}
+                                <div class="callout callout-danger">
+                                  <h5><i class="fas fa-info"></i> Message</h5>
+                                  {{ message }}
+                                </div>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                              {% endif %}
+                       
+                            </div>
+                          </div>
+
+                        {% block aberd %}
+
+              
+
+                        {% endblock aberd %}
+                     
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    {% comment %} <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p> {% endcomment %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'aberdare/vendor/jquery-3.2.1.min.js' %}"></script>
+    <!-- Bootstrap JS-->
+    <script src="{% static 'aberdare/vendor/bootstrap-4.1/popper.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS       -->
+    <script src="{% static 'aberdare/vendor/slick/slick.min.js' %}">
+    </script>
+    <script src="{% static 'aberdare/vendor/wow/wow.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/animsition/animsition.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+    </script>
+    <script src="{% static 'aberdare/vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/counter-up/jquery.counterup.min.js' %}">
+    </script>
+    <script src="{% static 'aberdare/vendor/circle-progress/circle-progress.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'aberdare/vendor/select2/select2.min.js' %}">
+    </script>
+
+    <!-- Main JS-->
+    <script src="{% static 'aberdare/js/main.js' %}"></script>
+
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+          $('#dataTable').DataTable();
+      } );
+      </script>
+
+</body>
+
+</html>
+<!-- end document-->

@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+
+{% block home %} active {% endblock home %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+      <div class="col-12 col-sm-12">
+        <div class="card">
+  
+          <div class="card-body">
+            <div>
+              <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                <br>
+                								
+             
+                <div class="row">
+               
+                  <div class="col-12">
+                    <h4>Usage Details - {{ instance.instance_id }}  - {{ instance.template.template_name}}</h4>         
+                    <hr>
+  
+                  </div>
+                </div>
+          
+        
+                <table class="table table-striped table-sm" id="dataTable3">
+                  <thead>
+                                          
+      
+      
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Time Started</th>
+                      <th>Time Stopped</th>
+                      <!-- <th>Start Particular</th>
+                      <th>Stop Particular</th> -->
+                      <th>Usage in Hours</th>
+                      <th>Stopped By</th>
+                      {% if user.is_admin %}
+                      <th>Delete</th>
+                      {% endif %}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for log in logs %}
+                    <tr>
+                      <td>{{ log.id }}</td>
+                      <td>  
+                            
+                        {{ log.start_date }}</td>
+                        <td>      
+                         {{ log.stop_date }}</td>
+                      
+                      <!-- <td>
+                        {{ log.created_by }}
+                      
+                      </td>
+
+                      <td>
+                        {{ log.modified_by }}
+                      
+                      </td> -->
+                      <td>   {{ log.usage | intcomma }} </td>
+                      <td>      
+                        {{ log.description }}</td>
+
+                        {% if user.is_admin %}
+                        <td>      
+                          <a class="btn btn-danger btn-md" href="{% url 'usage_delete' pk=log.id %}"> Delete </a></td>
+
+                          {% endif %}
+                    </tr>
+
+                    {% endfor %}
+        
+             
+                  </tbody>
+                </table>
+             
+             
+             
+             
+              </div>
+           
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+  {% endblock %}
+
+
+
+
+  {% block extra_js %}
+<script>
+  $(document).ready( function () {
+    $('#dataTable').DataTable({
+      select: true,
+      dom: "Bfrtip",
+      autoWidth : true,
+      responsive: true,
+    });
+    $('#dataTable2').DataTable(
+      {
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      }
+    );
+    $('#dataTable3').DataTable(
+      {
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      }
+    );
+} );
+</script>
+
+
+{% endblock %}

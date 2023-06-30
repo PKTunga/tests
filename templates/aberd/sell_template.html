@@ -1,0 +1,108 @@
+
+{% extends 'aberd/base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+{% block active_sell_templates_spu %} active {% endblock active_sell_templates_spu %}
+{% load humanize %}
+{% block vps %} active {% endblock vps %}
+
+{% block aberd %}
+
+<div class="container">
+
+  <h3 style="text-transform: uppercase;">Sell Template</h3>
+
+</div>
+
+<div class="container">
+
+
+  <div class="row">
+
+    <div class="col-12">
+      <a class="btn btn-primary" href="{% url 'add_sell_template_to_sellers' %}" >Sell Template</a>
+    </div>
+  </div>
+  <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+    <thead>
+      <tr>
+        <th style="width: 10px">#</th>
+        <th>Template Name</th>
+        {% comment %} <th>Template ID</th> {% endcomment %}
+        <th>Units</th>
+        <th>Cost Per Unit</th>
+        <th>Total Cost</th>
+        <th>Price Per Unit</th>
+        {% comment %} <th>Total Price</th> {% endcomment %}
+        <th>Sellers</th>
+        <th>Date Added</th>
+    
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for vps in templates %}
+      <tr>
+        <td>{{ vps.id }}</td>
+        <td>{{vps.template.template_name}}</td>
+        {% comment %} <td>{{vps.template.template_id}}</td> {% endcomment %}
+        <td>{{vps.seller.seller_quantity}}</td>
+        <td>{{vps.template.cost }}</td>
+        <td>{{vps.get_total_cost }}</td>
+        <td>{{vps.cost }}</td>
+        {% comment %} <td>{{vps.balance }}</td> {% endcomment %}
+        <td>
+          {% for user in vps.sellers.all %} {{user}} {% endfor %} {{ vps.seller }}
+        </td>
+        <td>{{ vps.date_created | date }}</td>
+      
+        <td>
+
+       {% comment %} <a
+          class="btn btn-danger"
+          href="{% url 'add_templates_to_sellers' pk=vps.id %}"
+          >Add more</a
+        > {% endcomment %}
+          <a
+            class="btn btn-danger"
+            href="{% url 'edit_sell_template_to_sellers' pk=vps.id %}"
+            >Edit</a
+          >
+
+          <a
+            class="btn btn-danger"
+            href="{% url 'delete_sell_template_to_sellers' pk=vps.id %}"
+            >Delete</a
+          >
+        </td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+  {% endblock %}
+
+  {% block extra_js %}
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      });
+      $('#dataTable2').DataTable(
+        {
+          select: true,
+          dom: "Bfrtip",
+          autoWidth : true,
+          responsive: true,
+        }
+      );
+
+  } );
+  </script>
+  {% endblock %}

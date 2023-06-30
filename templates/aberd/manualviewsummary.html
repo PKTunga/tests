@@ -1,0 +1,196 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block active_manual_proxy %} 
+
+active
+
+{% endblock active_manual_proxy %} 
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_admin %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">Manual Proxies</h2>
+
+        
+        <div class="row mt-2 mb-3">
+            <div class="col-2">
+              <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg-proxy-man">Add Proxy</button>
+
+            </div>
+            <div class="col-8">
+
+            </div>
+          </div>
+
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Super User ID</th>
+                        <th>Instance ID</th> 
+                        <th >Proxy Generate Date</th>
+        
+                     
+                
+                        <th>Total Days</th>
+  
+                        <th >Proxy Summary</th>
+                        <th>Proxy Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for vps in man_proxies %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                       {{vps.created_by.get_referrer}}
+                      </td>
+
+                  
+
+                    <td>
+
+
+                      
+                        {{vps.instance_id}}
+                       
+
+                      </td>
+                  
+                      <td>
+                        
+                        {{vps.date_created | date }}
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-proxy-{{vps.id}}"></i>
+                        <div class="modal fade" id="modal-date-proxy-{{vps.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Update Date</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'update_time' pk=vps.id page=3 %}" method="post">
+                                  {% csrf_token %}
+
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">VPS Instance Assigned to {{vps.created_by}}</label>
+                                        <input type="text" class="form-control" name="aws_account_id" id="aws_account_id" value="{{vps.instance_id}}" readonly >
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="Date" value="{{ vps.date_created | date:'Y-m-d' }}">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+
+                                  </div>
+
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                       </td>
+                
+
+
+                      {% if vps.usage_in_days < 3 %}
+                    
+                      <td class="bg-danger">
+                        {{ vps.usage_in_days }}
+                      </td>
+                      {% elif vps.usage_in_days < 6 %}
+                    
+                      <td class="bg-orange">
+                        {{ vps.usage_in_days }}
+                      </td>
+                    </td>
+                    {% else %}
+                  
+                    <td >
+                      {{ vps.usage_in_days }}
+                    </td>
+
+                      {% endif %}
+
+
+
+
+
+
+
+
+
+                      <td>
+                        {{vps.get_summary}}
+                      </td>
+                      <td>
+                        <a href="{% url 'delete_vps' pk=vps.id page=3 %}" class="btn btn-danger">Delete Proxy</a>
+                      </td>
+            
+                      
+                    </tr>
+      
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+<div class="modal fade" id="modal-lg-proxy-man">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add Manually Generated Proxy Account</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+      
+          <form action="{% url 'manual_proxy_add_control_panel_proxy' %}" method="post">
+            {% csrf_token %}
+            {% crispy manual_proxyform %}
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
+{% endblock aberd %}

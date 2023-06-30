@@ -1,0 +1,46 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block active_contact_details %} active {% endblock active_contact_details %}
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_admin %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">Office Contact Details</h2>
+
+        
+        <div class="row mt-2 mb-3">
+            <div class="col-2">
+  
+            </div>
+            <div class="col-12">
+
+              <form action="{% url 'add_contact_details' %}" method="post">
+                {% csrf_token %}
+                {% crispy form %}
+              </form>
+
+            </div>
+          </div>
+
+   
+    </div>
+
+
+  
+</div>
+
+
+{% endif %}
+
+{% endblock aberd %}

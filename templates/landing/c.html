@@ -1,0 +1,222 @@
+
+  {% load static %}
+  {% load crispy_forms_tags %}
+  
+  {% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GOLD VPS PROXY SERVICES </title>
+  <meta content="" name="description">
+  <meta content="" name="GOLD VPS PROXY SERVICES India">
+
+  <!-- Favicons -->
+  {% comment %} <link href="{% static 'ii/img/favicon.png' %}" rel="icon"> {% endcomment %}
+  <link href="{% static 'ii/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'ii/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'ii/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'ii/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Restaurantly - v3.8.0
+  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+    {% include 'includes/header.html' %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container position-relative text-center text-lg-start" data-aos="zoom-in" data-aos-delay="100">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Extra Ordinally <span>Digital</span> Experiences</h1>
+          <h2>We provide fast, reliable Vps, Proxies and Vpn. Our prices are competitive!</h2>
+
+          <div class="btns">
+            <a href="{% url 'buy_now' %}" class="btn-book animated fadeInUp scrollto">Buy Now!</a>
+          </div>
+        </div>
+        <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Our Products</h2>
+          <p>Choose from our fast growing catalogue of products</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box" data-aos="zoom-in" data-aos-delay="100">
+              <span>VPS</span>
+              {% comment %} <h4>Lorem Ipsum</h4>
+              <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="200">
+              <span>PROXIES</span>
+              {% comment %} <h4>Repellat Nihil</h4>
+              <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p> {% endcomment %}
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box" data-aos="zoom-in" data-aos-delay="300">
+              <span>VPN</span>
+              {% comment %} <h4> Ad ad velit qui</h4>
+              <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p> {% endcomment %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Contact Us</h1>
+          </div>
+      
+          <div class="container">
+
+            <div class="row">
+
+
+
+
+              <div class="row">
+                <div class="col-3">
+          
+                </div>
+                <div class="col-6">
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    <div class="callout callout-info">
+                      <h5><i class="fas fa-info"></i> Info</h5>
+                      {{ message }}
+                    </div>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+
+            <form action="{% url 'contactUs' %}" method="post">
+                {% csrf_token %}
+                {% crispy form %}
+              </form>
+
+
+
+
+
+ 
+
+            </div>
+
+        </div>
+
+
+       
+      </section><!-- End Why Us Section -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  </main><!-- End #main -->
+
+
+  {% include 'includes/footer.html' %}
+
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'ii/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'ii/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'ii/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'ii/js/main.js' %}"></script>
+ <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6311c37337898912e966c9b1/1gbum6vaq';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+</body>
+
+</html>

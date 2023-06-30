@@ -1,0 +1,143 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+
+{% block vps %} active {% endblock vps %}
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>Filter</label>
+            <input type="text" class="form-control" placeholder="Instance ID">
+          </div>
+        </div>
+        <div class="col-sm-3">
+
+          <br>
+          
+            <button type="submit" class="btn btn-info mt-2">Search</button>
+          
+        </div>
+
+        <div class="col-sm-2">
+
+          <br>
+          
+            <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg">Add Account</button>
+          
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">VPS Summary View</h3>
+        </div>
+        <div class="card-body p-0">
+
+          <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg">Add Vps Account</button>
+
+          <table class="table table-striped">
+            <thead>
+              											
+
+
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>AWS Account ID</th>
+                <th>Assign User ID</th>
+                <th >Password</th>
+
+                <th>Add Credit</th>
+                <th>Activity</th>
+                <th >Instance ID	</th> 
+                <th>Vps Name</th>
+
+                <th>User Status</th>
+                <th>Change Total Days</th>
+                <th >Change Total Hours</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for vps in vps %}
+              <tr>
+                <td>{{vps.id}}</td>
+                <td>{{vps.aws_account_id}}</td>
+                <td>
+                 {{vps.user.username}}
+                </td>
+                <td>{{vps.password}}</td>
+                <td>
+                  <button>Add Credit</button>
+                </td>
+                <td>
+                  
+                </td>
+                <td>
+                  {{vps.instance_id}}
+                </td>
+                <td>
+                  {{vps.vps_name}}
+                </td>
+                <td>
+
+                </td>
+                <td>
+                  
+                </td>
+                <td></td>
+                
+              </tr>
+
+              {% endfor %}
+         
+           
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modal-lg">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Vps</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% crispy form %}
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+  {% endblock %}

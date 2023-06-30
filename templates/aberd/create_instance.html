@@ -1,0 +1,194 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block active_create_instance %} active {% endblock active_create_instance %}
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_superuser %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">Create Instances</h2>
+
+
+
+        <div class="row">
+               
+            <div class="col-4">
+              <h4>
+                Account Balance - 
+               
+                {{ account.balance | intcomma }}</h4>
+                <a class="btn btn-sm btn-info" href="{% url 'account' pk=account.user.id %}" > movement</a>
+        
+
+            </div>
+
+
+            <div class="col-4">
+              <h4>
+            <br>
+                <a class="btn btn-sm btn-success" href="{% url 'make_payment' %}" > Make Payment</a></h4>
+      
+        
+            </div>
+
+
+            <div class="col-4">
+              <h4>
+            <br>
+                <a class="btn btn-sm btn-success" href="{% url 'sell_template_to_sellers' %}" > Add Server Type</a></h4>
+      
+        
+            </div>
+
+
+            
+            <div class="col-12">
+         
+              <hr>
+
+            </div>
+          </div>
+
+        <div class="table-responsive table--no-card m-b-40">
+         
+
+
+
+
+
+
+            <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+                <thead>
+                                        
+    
+    
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Select VPS Type</th>
+                    <th>WINDOW VPS</th>
+                    <th>VPS/PROXY</th>
+                    <th >Cost</th>
+                   
+                 
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for template in templates_auto %}
+                  <tr>
+                    <form action="{% url 'generate_instance' pk=template.id %}" method="post">
+                      {% csrf_token %}
+                    <td>{{forloop.counter}}</td>
+                    <td>      
+                      {{ template.template_name }}</td>
+
+                      <td>
+                        
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="no_of_instances">
+                          <option value="1" selected>One</option>
+                        </select>
+                                            
+                      </td>
+                    <td>
+                     <button class="btn btn-secondary btn-sm" type="submit">Generate</button>
+                    </td>
+                    <td>
+                      {{ template.cost | intcomma }}
+                    
+                    </td>
+
+                    </form>
+             
+
+               
+                  </tr>
+
+                  {% endfor %}
+                  {% for template in templates %}
+                  <tr>
+                    <form action="{% url 'generate_instance' pk=template.id %}" method="post">
+                      {% csrf_token %}
+                    <td>{{forloop.counter}}</td>
+                    <td>      
+                      {{ template.template_name }}</td>
+
+                      <td>
+                        
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="no_of_instances">
+                          <option value="1" selected>One</option>
+                        </select>
+                                            
+                      </td>
+                    <td>
+                     <button class="btn btn-secondary btn-sm" type="submit">Generate</button>
+                    </td>
+                    <td>
+                      {{ template.cost | intcomma }}
+                    
+                    </td>
+
+                    </form>
+             
+
+               
+                  </tr>
+                  {% endfor %}
+
+                  {% for template in seller_templates_offers %}
+                  <tr>
+                    <form action="{% url 'generate_seller_instance_superuser' pk=template.id %}" method="post">
+                      {% csrf_token %}
+                    <td>{{forloop.counter}}</td>
+                    <td>      
+                      {{ template.template.template_name }}</td>
+
+                      <td>
+                        
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="no_of_instances">
+                          <option value="1" selected>One</option>
+                        </select>
+                                            
+                      </td>
+                    <td>
+                     <button class="btn btn-secondary btn-sm" type="submit">Generate</button>
+                    </td>
+                    <td>
+                      {{ template.cost | intcomma }}
+                    
+                    </td>
+
+                    </form>
+             
+
+               
+                  </tr>
+                  {% endfor %}
+      
+           
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+
+
+  
+
+{% endif %}
+
+{% endblock aberd %}

@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+
+{% block home %} active {% endblock home %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-3">
+
+    </div>
+
+
+    <div class="col-6">
+
+  
+        <div class="card">
+  
+          <div class="card-body">
+            <img class="img-fluid pad" src="{{obj.banner_file.url}}" alt="Payment Info">
+		
+        </div>
+   
+    </div>
+
+    <div class="col-3">
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+  {% endblock %}
+
+
+

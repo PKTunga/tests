@@ -1,0 +1,89 @@
+<!-- ======= Footer ======= -->
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-info">
+            <link
+              rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+            />
+            <a
+              href="{{ request.parameters.whatsapp }}"
+              class="float"
+              target="_blank"
+            >
+              <i class="fa fa-whatsapp my-float"></i>
+            </a>
+
+            <a
+              href="{{ request.parameters.telegram }}"
+              class="floater"
+              target="_blank"
+            >
+              <i class="fab fa-telegram my-floater"></i>
+            </a>
+
+            <h3>GOLD VPS PROXY</h3>
+
+            <address>
+              <p>Phone: +{{ request.parameters.phone_number }}</p>
+              Email:<a href="mailto:goldvpsproxy@gmail.com">
+                {{ request.parameters.email }}</a
+              >
+              <br />
+              <br />
+
+              {{ request.parameters.address |linebreaks }}
+            </address>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+
+            <li><a href="{% url 'buy_now' %}">Buy Proxy</a></li>
+
+            <li><a href="{% url 'account_login' %}">Login</a></li>
+            <li><a href="{% url 'account_signup' %}">Signup</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="{% url 'about_us' %}">About Us</a></li>
+            <li><a href="{% url 'contact_us' %}">Contact</a></li>
+
+            <li><a href="{% url 'privacy' %}">Privacy policy</a></li>
+            <li><a href="{% url 'refund' %}">Refund Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="{% url 'index' %}">Facebook</a></li>
+            <li><a href="{% url 'index' %}">Telegram Web</a></li>
+            <li><a href="{% url 'index' %}">Linkedin</a></li>
+
+            <li>
+              <a href="{% url 'terms_and_conditions' %}">Terms of service</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright 2022 <strong><span> GOLD VPS PROXY</span></strong> . All
+      Rights Reserved
+    </div>
+  </div>
+</footer>
+<!-- End Footer -->

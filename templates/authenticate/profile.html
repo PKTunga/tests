@@ -1,0 +1,198 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block aberd %}
+<div class="content">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container">
+
+      <div class="row mb-1">
+        <div class="col-sm-6">
+          <h1>Settings</h1>
+        </div>
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item active">Settings</li>
+          </ol>
+        </div>
+      </div>
+
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container">
+      <div class="row">
+   
+        <!-- /.col -->
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header p-2 mastal">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link nav-warning active" href="#settings"
+                    data-toggle="tab">Settings</a></li>
+              
+
+                {% if user.is_admin %}
+                <li class="nav-item"><a class="nav-link" href="#notifications" data-toggle="tab">Payment Info</a></li>
+                <li class="nav-item"><a class="nav-link" href="#documents" data-toggle="tab">Attach RDP File</a></li>
+                <li class="nav-item"><a class="nav-link" href="#banner" data-toggle="tab">Banner Message</a></li>
+                <li class="nav-item"><a class="nav-link  nav-warning" href="#message" data-toggle="tab">Login Message</a></li>
+                <li class="nav-item"><a class="nav-link  nav-warning" href="#whatsapp" data-toggle="tab">WhatsApp Setup</a></li>
+
+                {% endif %}
+
+                <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password Reset</a></li>
+
+             
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="card-body">
+              <div class="tab-content">
+      
+
+                <div class="tab-pane" id="notifications" style="min-height:60vh;">
+
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-6">
+                  
+                        <form action="{% url 'update_banner' %}" method="post"  enctype="multipart/form-data">
+                            {% crispy paymentform %}
+                        </form>
+                    </div>
+                   
+                </div>
+                <div class="tab-pane" id="banner" style="min-height:60vh;">
+
+                  <div class="col-3">
+
+                  </div>
+                  <div class="col-6">
+                   
+                      <form action="{% url 'update_banner_text' %}" method="post"  enctype="multipart/form-data">
+                          {% crispy banner_form %}
+                      </form>
+                  </div>
+                 
+              </div>
+
+                <div class="tab-pane" id="documents" style="min-height:60vh;">
+
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-6">
+                     
+                        <form action="{% url 'update_rdp' %}" method="post"  enctype="multipart/form-data">
+                            {% crispy rdpfileform %}
+                        </form>
+                    </div>
+                   
+                </div>
+                <div class="active tab-pane" id="settings" style="min-height:60vh;">
+                  <div class="col-3">
+
+                  </div>
+                  <div class="col-6">
+
+                      <form action="{% url 'update_profile' %}" method="post" >
+                          {% crispy profile_form %}
+                      </form>
+
+
+                      <br>
+
+            
+
+                    
+                    
+                  </div>
+
+     
+
+
+                </div>
+
+
+                <div class="tab-pane" id="whatsapp" style="min-height:60vh;">
+                  <div class="col-3">
+
+                  </div>
+                  <div class="col-6">
+
+                      <form action="{% url 'update_whatsapp' %}" method="post" >
+                          {% crispy whatsapp_form %}
+                      </form>
+                    
+                  </div>
+                </div>
+
+
+                <div class="tab-pane" id="password" style="min-height:60vh;">
+                    <div class="col-3">
+
+                    </div>
+                    <div class="col-6">
+
+                        <form action="{% url 'update_password' %}" method="post" >
+                            {% crispy password_form %}
+                        </form>
+                      
+                    </div>
+
+                  
+
+                </div>
+
+
+                
+                <div class="tab-pane" id="message" style="min-height:60vh;">
+                  <div class="col-3">
+
+                  </div>
+                  <div class="col-6">
+
+                      <form action="{% url 'update_message' %}" method="post" >
+                          {% crispy message_form %}
+                      </form>
+
+
+                      <br>
+
+                  <div class="alert alert-info">
+                    <h5>Super User Current Login Message</h5>
+                    {{ message.message }}
+                  </div>
+
+                  <div class="alert alert-success">
+                    <h5>User Current Login Message</h5>
+                    {{ message.basic }}
+                  </div>
+                    
+                  </div>
+
+                
+
+              </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+
+
+{% endblock aberd %}

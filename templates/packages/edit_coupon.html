@@ -1,0 +1,109 @@
+
+{% extends 'aberd/base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% block active_coupons %} active {% endblock active_coupons %}
+
+{% load humanize %}
+
+
+{% block aberd %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+      <h3 style="text-transform: uppercase;">Edit Coupon</h3>
+
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+     <hr>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+
+
+      <h4>Edit Coupon</h4>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card">
+       
+        <div class="card-body">
+          <div>
+           
+            <form action="{% url 'edit_coupon' pk=form.instance.id %}" method="post">
+              {% csrf_token %}
+              {% crispy form %}
+    
+            </form>
+          </div>
+  
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+  {% endblock %}
+
+
+

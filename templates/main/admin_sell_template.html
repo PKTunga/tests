@@ -1,0 +1,153 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+{% block vps %} active {% endblock vps %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+      <h3 style="text-transform: uppercase;">Sell Template</h3>
+
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+     <hr>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+
+
+      <h4>Make Template Available On Sellers' page</h4>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card">
+       
+        <div class="card-body">
+          <div>
+           
+            <form action="{% url 'admin_sell_templates_to_sellers' %}" method="post">
+              {% csrf_token %}
+              {% crispy form %}
+    
+            </form>
+          </div>
+
+          <div style="text-align: center;">
+            <h4>SELLER TEMPLATES</h4>
+          </div>
+          <div>
+            <table class="table table-striped table-sm" id="dataTable">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Template</th>
+                  <th>Price Per Unit</th>
+                  <th>Seller</th>           
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for vps in templates %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+                  <td>{{vps.template.template_name}}</td>
+                  <td>{{vps.cost }}</td>
+                  <td>{{ vps.seller }}</td>              
+                  <td>
+                    <a
+                      class="btn btn-danger"
+                      href="{% url 'admin_delete_template' pk=vps.id %}"
+                      >Delete</a
+                    >
+                  </td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+  {% endblock %}
+
+
+
+  {% block extra_js %}
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      });
+      $('#dataTable2').DataTable(
+        {
+          select: true,
+          dom: "Bfrtip",
+          autoWidth : true,
+          responsive: true,
+        }
+      );
+
+  } );
+  </script>
+  
+  
+  {% endblock %}

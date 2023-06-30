@@ -1,0 +1,953 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+{% block vps %} active {% endblock vps %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-7">
+      <h3 style="text-transform: uppercase;">Control Panel</h3>
+
+    </div>
+
+    <div class="col-3">
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+     <hr>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card card-tabs">
+        <div class="card-header p-0 pt-1">
+          <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" id="custom-tabs-one-users-tab" data-toggle="pill" href="#custom-tabs-one-users" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">SUPERUSER ACCOUNTS DETAILS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">VPS VIEW SUMMARY</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">PROXY VIEW SUMMARY</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-profile-tab-man" data-toggle="pill" href="#custom-tabs-one-profile-man" role="tab" aria-controls="custom-tabs-one-profile-man" aria-selected="false">MANUALLY GENERATED PROXY VIEW SUMMARY</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-profile-tab-file" data-toggle="pill" href="#custom-tabs-one-profile-file" role="tab" aria-controls="custom-tabs-one-profile-file" aria-selected="false">UPLOAD CSV</a>
+            </li>
+
+            {% comment %} <li class="nav-item">
+              <a class="nav-link" id="custom-tabs-one-profile-tab-file" href="{% url 'admin_sell_templates_to_sellers' %}" role="tab" aria-controls="custom-tabs-one-profile-file" aria-selected="false">SELL TEMPLATE</a>
+            </li> {% endcomment %}
+          </ul>
+        </div>
+        <div class="card-body">
+          <div class="tab-content" id="custom-tabs-one-tabContent">
+
+            <div class="tab-pane fade show active" id="custom-tabs-one-users" role="tabpanel" aria-labelledby="custom-tabs-one-users-tab">
+
+
+              <div>
+                <div class="row">
+                  <div class="col-2">
+                  </div>
+                  <div class="col-8">
+
+         
+  
+                  </div>
+                </div>
+                <table class="table table-striped table-sm" id="dataTable">
+                  <thead class="bg-secondary">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>AWS Account</th>
+                      <th>Super ID</th>
+                      <th>Password</th>
+                      <th>Edit</th>
+                      <th>Credit Amount</th>
+                      <th>Add Credit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in users %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{user.get_aws_account}}</td>
+                      <td>
+                       {{user.username}}
+                   
+                      </td>
+                      <td>
+                        {{user.get_password}}
+                       </td>
+
+                       <td>
+                        
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-proxy-user-{{user.id}}"></i>
+                        <div class="modal fade" id="modal-date-proxy-user-{{user.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Update Superuser Details</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'update_password' pk=user.id %}" method="post">
+                                  
+                                  {% csrf_token %}
+ 
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Username</label>
+                                        <input type="text" class="form-control" name="username" id="aws_account_id" value="{{user.username}}" >
+ 
+                                      </div>
+                                    </div>
+ 
+ 
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                    <input type="text" name="password" class="form-control" placeholder="Password" value="{{ user.get_password }}">
+                                      </div>
+                                    </div>
+                                  </div>
+ 
+ 
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+ 
+                                  </div>
+ 
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                       </td>
+                    
+                       <td>
+
+                        <a href="{% url 'account' pk=user.id %}">
+                          {{ user.balance | intcomma }} 
+                        </a>
+                      
+                       </td>
+                      <td> 
+
+                  
+                        <button class="btn btn-info" data-toggle="modal" data-target="#modal-lg-{{user.id}}">Add Credit</button>
+
+
+                        <div class="modal fade" id="modal-lg-{{user.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Add Credit</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'add_credit' %}" method="post">
+                                  {% csrf_token %}
+
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Account</label>
+                                        <input type="text" class="form-control" name="aws_account_id" id="aws_account_id" value="{{user.id}}" readonly >
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Amount</label>
+                                        <input type="number" name="amount" class="form-control" placeholder="Amount">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Add</button>
+
+                                  </div>
+
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <td>
+                        <a class="btn btn-danger" href="{% url 'delete_user' pk=user.id %}" >Delete</a>
+                      </td>
+                      
+            
+       
+                      
+                    </tr>
+      
+                    {% endfor %}
+               
+                 
+                  </tbody>
+                </table>
+              </div>
+      
+           
+           
+           
+           
+            </div>
+            <div class="tab-pane fade show" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+
+
+              <div>
+                <div class="row">
+                  <div class="col-2">
+                    <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg-vps">Add VPS Account</button>
+                  </div>
+                  <div class="col-8">
+
+         
+  
+                  </div>
+                </div>
+                <table class="table table-striped table-sm" id="dataTable1">
+                  <thead class="bg-secondary">
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Super User ID</th>
+                      <th>Seller</th>
+                      <th >Instance ID	</th> 
+                      <th>Date</th>
+                      <th>Hostname</th>
+                      <th>User Status</th>
+                      <th>Total Days</th>
+                      <th > Total Hours</th>
+                      <th > Delete</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vps in vpses %}
+                    <tr>
+                     
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                       {{vps.created_by.username}}
+                      
+                      </td>
+                      <td>
+                        
+                        {% if vps.created_by.is_seller %}
+                        {{vps.created_by.username}}
+                        {% endif %}
+                       </td>
+                  
+            
+                      <td>
+                     
+                        {{ vps.instance_id }}
+                      </td>
+                      <td>
+                        {{vps.date_created | date }}
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-{{vps.id}}"></i>
+                        <div class="modal fade" id="modal-date-{{vps.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Update Date</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'update_time' pk=vps.id %}" method="post">
+                                  {% csrf_token %}
+
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">VPS Instance Assigned to {{vps.created_by}}</label>
+                                        <input type="text" class="form-control" name="aws_account_id" id="aws_account_id" value="{{vps.instance_id}}" readonly >
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="Date" value="{{ vps.date_created | date:'Y-m-d' }}">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+
+                                  </div>
+
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                      
+                      
+                      </td>
+                      <td>
+                        {{vps.hostname}} 
+                      </td>
+
+                      <td>
+                        <a  class="btn btn-info" href="{% url 'instance_renew' pk=vps.id %}">Renew</a>
+                      </td>
+
+                              
+                      {% if vps.usage_in_days < 3 %}
+                    
+                      <td class="bg-danger">
+                        {{ vps.usage_in_days }}
+                      </td>
+                      {% elif vps.usage_in_days < 6 %}
+                    
+                      <td class="bg-orange">
+                        {{ vps.usage_in_days }}
+                      </td>
+                    </td>
+                    {% else %}
+                  
+                    <td >
+                      {{ vps.usage_in_days }}
+                    </td>
+
+                      {% endif %}
+                      <td>
+                        {{ vps.usage_in_hours }}
+                        <a href="{% url 'usage' pk=vps.id %}" >
+                          <i class="fas fa-plus"></i>
+                        </a>
+                      </td>
+                      <td>
+                        <a class="btn btn-danger" href="{% url 'delete_vps' pk=vps.id %}" >Delete</a>
+                      </td>
+                      
+                    </tr>
+      
+                    {% endfor %}
+               
+                 
+                  </tbody>
+                </table>
+              </div>
+      
+           
+           
+           
+           
+            </div>
+            <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+              <div class="container-fluid">
+
+                <div class="row">
+                  <div class="col-2">
+                    <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg-proxy">Add Proxy Account</button>
+
+                  </div>
+                  <div class="col-8">
+
+                  </div>
+                </div>
+
+
+                <table class="table table-striped table-sm" id="dataTable2">
+                  <thead class="bg-secondary">
+      
+      
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Super User ID</th>
+                      <th>Seller</th>
+                      <th >Proxy Generate Date</th>
+      
+                   
+                      <th>Instance ID</th>
+                      <th>Total Days</th>
+
+                      <th >Proxy Summary</th>
+                      <th>Proxy Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vps in proxies %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                       {{vps.created_by.username}}
+                      </td>
+                      <td>
+                        {% if vps.created_by.is_seller %}
+                        {{vps.created_by.username}}
+                        {% endif %}
+                       </td>
+                  
+                      <td>
+                        
+                        {{vps.date_created | date }}
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-proxy-{{vps.id}}"></i>
+                        <div class="modal fade" id="modal-date-proxy-{{vps.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Update Date</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'update_time' pk=vps.id %}" method="post">
+                                  {% csrf_token %}
+
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">VPS Instance Assigned to {{vps.created_by}}</label>
+                                        <input type="text" class="form-control" name="aws_account_id" id="aws_account_id" value="{{vps.instance_id}}" readonly >
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="Date" value="{{ vps.date_created | date:'Y-m-d' }}">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+
+                                  </div>
+
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                       </td>
+                      <td>
+                        {{vps.instance_id}}
+                      </td>
+
+
+                      {% if vps.usage_in_days < 3 %}
+                    
+                      <td class="bg-danger">
+                        {{ vps.usage_in_days }}
+                      </td>
+                      {% elif vps.usage_in_days < 6 %}
+                    
+                      <td class="bg-orange">
+                        {{ vps.usage_in_days }}
+                      </td>
+                    </td>
+                    {% else %}
+                  
+                    <td >
+                      {{ vps.usage_in_days }}
+                    </td>
+
+                      {% endif %}
+
+
+
+
+
+
+
+
+
+                      <td>
+                        {{vps.get_summary}}
+                      </td>
+                      <td>
+                        <a href="{% url 'delete_vps' pk=vps.id %}" class="btn btn-danger">Delete Proxy</a>
+                      </td>
+            
+                      
+                    </tr>
+      
+                    {% endfor %}
+                 
+                  </tbody>
+                </table>
+              </div>
+                              
+           
+
+            </div>
+       
+
+            <div class="tab-pane fade" id="custom-tabs-one-profile-man" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab-man">
+              <div class="container-fluid">
+
+                <div class="row">
+                  <div class="col-2">
+                    <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg-proxy-man">Add Proxy</button>
+
+                  </div>
+                  <div class="col-8">
+
+                  </div>
+                </div>
+
+
+                <table class="table table-striped table-sm" id="dataTable3">
+                  <thead class="bg-secondary">
+      
+      
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Super User ID</th>
+                      <th>Seller</th>
+                      <th >Proxy Generate Date</th>
+      
+                   
+              
+                      <th>Total Days</th>
+
+                      <th >Proxy Summary</th>
+                      <th>Proxy Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for vps in man_proxies %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                       {{vps.created_by.username}}
+                      </td>
+
+                      <td>
+
+
+                        {% if vps.created_by.is_seller %}
+                        {{vps.created_by.username}}
+                        {% endif %}
+
+                      </td>
+                  
+                      <td>
+                        
+                        {{vps.date_created | date }}
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-proxy-{{vps.id}}"></i>
+                        <div class="modal fade" id="modal-date-proxy-{{vps.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-secondary">
+                                <h4 class="modal-title">Update Date</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                <form action="{% url 'update_time' pk=vps.id %}" method="post">
+                                  {% csrf_token %}
+
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">VPS Instance Assigned to {{vps.created_by}}</label>
+                                        <input type="text" class="form-control" name="aws_account_id" id="aws_account_id" value="{{vps.instance_id}}" readonly >
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Date</label>
+                                    <input type="date" name="date" class="form-control" placeholder="Date" value="{{ vps.date_created | date:'Y-m-d' }}">
+                                      </div>
+                                    </div>
+                                  </div>
+
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+
+                                  </div>
+
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                       </td>
+                
+
+
+                      {% if vps.usage_in_days < 3 %}
+                    
+                      <td class="bg-danger">
+                        {{ vps.usage_in_days }}
+                      </td>
+                      {% elif vps.usage_in_days < 6 %}
+                    
+                      <td class="bg-orange">
+                        {{ vps.usage_in_days }}
+                      </td>
+                    </td>
+                    {% else %}
+                  
+                    <td >
+                      {{ vps.usage_in_days }}
+                    </td>
+
+                      {% endif %}
+
+
+
+
+
+
+
+
+
+                      <td>
+                        {{vps.get_summary}}
+                      </td>
+                      <td>
+                        <a href="{% url 'delete_vps' pk=vps.id %}" class="btn btn-danger">Delete Proxy</a>
+                      </td>
+            
+                      
+                    </tr>
+      
+                    {% endfor %}
+                 
+                  </tbody>
+                </table>
+              </div>
+                              
+           
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="tab-pane fade" id="custom-tabs-one-profile-file" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab-file">
+              <div class="container-fluid">
+
+                <div class="row">
+                  <div class="col-2">
+
+                  </div>
+                  <div class="col-10">
+
+                  </div>
+
+
+
+
+                  <div class="col-12">
+
+
+                        
+            <form action="{% url 'upload_csv' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+             
+
+              {% crispy csvform %}
+    
+
+
+
+
+
+            </form>
+
+
+            <table class="table table-sm table-hover table-stripped">
+              <thead>
+                  <th> # </th>
+                <th> Description </th>
+                <th> Action </th>
+
+              </thead>
+
+              <tbody>
+                  {% for file in files %}
+                  <tr>
+                    <td> {{ forloop.counter }} </td>
+                    <td> {{ file.description }} </td>
+                    <td>
+                    <a href="{% url 'delete_file' pk=file.id %}" class="btn btn-danger btn-md"> Delete </a> 
+                    
+                    
+                    
+                     </td>
+
+
+
+
+                  </tr>
+
+                  {% endfor %}
+
+
+              </tbody>
+
+
+            </table>
+
+
+
+
+                  </div>
+
+
+                </div>
+
+
+     
+              </div>
+                              
+           
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div class="modal fade" id="modal-lg-vps">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Vps Account</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{% url 'control_panel_vps' %}" method="post">
+          {% csrf_token %}
+          {% crispy vpsform %}
+
+        </form>
+     
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-lg-proxy">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Proxy Account</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    
+        <form action="{% url 'control_panel_proxy' %}" method="post">
+          {% csrf_token %}
+          {% crispy proxyform %}
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modal-lg-proxy-man">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Manually Generated Proxy Account</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+    
+        <form action="{% url 'manual_proxy_add_control_panel_proxy' %}" method="post">
+          {% csrf_token %}
+          {% crispy manual_proxyform %}
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+  {% endblock %}
+
+
+
+  {% block extra_js %}
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable();
+
+      $('#dataTable1').DataTable();
+      $('#dataTable2').DataTable();
+      $('#dataTable3').DataTable();
+  } );
+  </script>
+  
+  
+  {% endblock %}

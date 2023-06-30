@@ -1,0 +1,120 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block active_coupons %} active {% endblock active_coupons %}
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_admin %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">Coupons</h2>
+
+        <div class="row mt-2 mb-3">
+            <div class="col-2">
+              <button type="submit" class="btn btn-info btn-block mt-2" data-toggle="modal" data-target="#modal-lg-vps">Add A Coupon</button>
+            </div>
+            <div class="col-8">
+
+   
+
+            </div>
+          </div>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Package</th>
+                        <th >Description </th> 
+
+                        <th >Edit	</th> 
+                        <th >Delete	</th> 
+                  
+                    </tr>
+                </thead>
+                <tbody>
+         
+
+
+                {% for coupon in coupons %}
+                    <tr>
+                     
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                       {{ coupon.name }}
+                      
+                      </td>
+                      <td>
+                        {{ coupon.value }}
+                   
+                       </td>
+
+                       <td>
+                        {{ coupon.package }}
+                   
+                       </td>
+                  
+            
+                      <td>
+                     
+                        {{ coupon.description }}
+                      </td>
+                      <td>
+                        <a class="btn btn-info" href="{% url 'edit_coupon' pk=coupon.id %}" >Edit</a>
+                      </td>
+
+                      <td>
+                        <a class="btn btn-danger" href="{% url 'delete_coupon' pk=coupon.id %}" >Delete</a>
+                      </td>
+                      
+                    </tr>
+      
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+<div class="modal fade" id="modal-lg-vps">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add A Coupon</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <form action="{% url 'add_coupon' %}" method="post">
+            {% csrf_token %}
+            {% crispy form %}
+  
+          </form>
+       
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
+{% endblock aberd %}

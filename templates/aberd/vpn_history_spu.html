@@ -1,0 +1,151 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block active_vpn_history_spu %} active {% endblock active_vpn_history_spu %}
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_superuser %}
+
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">VPN History</h2>
+
+        <div class="row mt-2 mb-3">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+
+   
+
+            </div>
+          </div>
+        <div class="table-responsive table--no-card m-b-40">
+    
+
+
+
+
+          
+
+            <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+                <thead>
+    
+                 			
+                  <tr>
+                    <th style="width: 10px">#</th>
+                    <th> Package </th>
+                    <th> Coupon </th>
+                    <th> Payment </th>
+                    <th> Download VPN Client</th>
+                    <th>Download VPN Profile</th>
+
+                    <th>VPN User</th>
+                    <th>VPN Password</th>
+
+             
+             
+
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for order in orders %}
+
+                  {% if order.instance %}
+                  <tr>
+                    <form action="" method="post">
+
+                      {% csrf_token %}
+                      <td>{{forloop.counter}}</td>
+                      <td>
+                        {{order.package.title | title}}
+                       </td>
+
+                       <td>
+                        {{order.coupon.name | title}}
+                       </td>
+                       
+                     <td> 
+                      
+                      {{ order.payment_status | title }}
+
+                 
+                     </td>
+
+
+                     <td>
+                    
+                      {% if order.instance.vpn_file %}
+                    
+                      <a href="{{ order.instance.vpn_file.url }}" download> Download Client</a>
+                    
+                      {% endif %}
+                    </td>
+                    <td>
+                     
+  
+                      {% if order.instance.vpn_key %}
+                    
+                      <a href="{{ order.instance.vpn_key.url }}" download> Download Profile</a>
+                    
+                      {% endif %}
+                    
+                    </td>
+            
+                   
+                      <td>
+                        
+                     
+                        {{order.instance.instance_user}}
+
+                    
+
+                       </td>
+
+
+
+                                      
+                       <td>
+                        
+                     
+                        {{order.instance.instance_password}}
+
+                    
+
+                       </td>
+                
+                   
+                 
+              
+                    </form>
+  
+                    
+                  </tr>
+
+                  {% endif %}
+    
+                  {% endfor %}
+               
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+
+
+{% endif %}
+
+{% endblock aberd %}

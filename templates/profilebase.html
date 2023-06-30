@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>AwsVPS</title>
+  <link rel="stylesheet" href="{% static 'all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous"/>
+
+  <style>
+    .active {
+
+    }
+
+    table.dataTable tbody td {
+      padding: 3px 2px;
+  }
+
+  .t {
+    text-align: center !important;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+  </style>
+</head>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper" ondragstart="return false" onselectstart="return false">
+{% if user.is_authenticated %}
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+    <div class="container">
+      <a href="/" class="navbar-brand">
+      
+        <span class="brand-text font-weight-light">AwsVPS</span>
+      </a>
+      
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+        <ul class="navbar-nav">
+          {% if user.is_superuser %}
+          <li class="nav-item">
+            <a href="{% url 'superuser_home' %}" class="nav-link">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">{{user.username}} - Superuser</a>
+          </li>
+
+
+          {% elif user.is_admin %}
+    
+          <li class="nav-item">
+            <a href="{% url 'control_panel' %}" class="nav-link">{{ user.username }} - Admin</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'templates' %}" class="nav-link">Templates Types</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'aws_accounts' %}" class="nav-link">Aws Accounts</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'settings' %}" class="nav-link">Settings</a>
+          </li>
+          {% else %}
+    
+          <li class="nav-item">
+            <a href="{% url 'user_dashboard' %}" class="nav-link ">{{ user.username }}</a>
+          </li>
+          {% endif %}
+          <li class="nav-item">
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+          </li>
+        </ul>
+
+   
+      </div>
+
+    
+    </div>
+  </nav>
+
+
+  {% endif %}
+
+  <div class="content-wrapper">
+  hehre here here 
+    {{ messages }}
+    <br>
+
+    <div class="row">
+      <div class="col-3">
+
+      </div>
+
+      <div class="col-6">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <div class="callout callout-info" style="color: black;">
+            <h5 style="color: black;"><i class="fas fa-info"></i> Message</h5>
+            {{ message }}
+          </div>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+
+
+
+
+      {% block content %}
+
+
+      {% endblock %}
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+
+</div>
+<!-- ./wrapper -->
+
+
+<script src="{% static 'jquery.min.js' %}"></script>
+<script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/adminlte.min.js' %}"></script>
+<script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+      document.onkeydown = function(e){
+          if (e.ctrlKey &&
+              (e.keyCode === 67 ||
+                  e.keyCode === 86 ||
+                  e.keyCode === 85 ||
+                  e.keyCode === 117)) {
+              return false;
+          } else {
+              return true;
+          }
+      };
+  });
+  </script>
+{% block extra_js %}
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

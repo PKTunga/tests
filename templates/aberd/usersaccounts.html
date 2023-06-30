@@ -1,0 +1,159 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block active_spu_proxy %} 
+
+active
+
+{% endblock active_spu_proxy %} 
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_admin %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="title-1 m-b-25">User Accounts</h2>
+        <div class="table-responsive table--no-card m-b-40">
+            <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+                <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>AWS Account</th>
+                        <th>Super ID</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Verified</th>
+                        <th>Edit</th>
+                
+                        <th>Delete</th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                      <td>{{forloop.counter}}</td>
+                      <td>{{user.get_aws_account}}</td>
+                      <td>
+                       {{user.username}}
+                   
+                      </td>
+                      <td>
+                        {{user.email}}
+                    
+                       </td>
+                      <td>
+                        {{user.get_password}}
+                       </td>
+
+                       <td>
+                        {{user.verified}}
+                       </td>
+
+                       <td>
+                        <i class="fas fa-pen"  data-toggle="modal" data-target="#modal-date-proxy-user-{{user.id}}"></i>
+                        <div class="modal fade" id="modal-date-proxy-user-{{user.id}}">
+                          <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <div class="modal-header bg-info">
+                                <h4 class="modal-title">Update Superuser Details</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                            
+                                                   
+                                <form action="{% url 'update_password' pk=user.id %}" method="post">
+                                  
+                                  {% csrf_token %}
+ 
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Username</label>
+                                        <input type="text" class="form-control" name="username" id="aws_account_id" value="{{user.username}}" >
+ 
+                                      </div>
+                                    </div>
+ 
+ 
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                    <input type="text" name="password" class="form-control" placeholder="Password" value="{{ user.get_password }}">
+                                      </div>
+                                    </div>
+                                  </div>
+ 
+                                  <div class="row">
+                                    <div class="col-6">
+                                      <div class="form-group">
+                                      <div class="form-check">
+                                        {% comment %} <input class="form-check-input" name="marketer" type="checkbox" value="" id="flexCheckDefault"> {% endcomment %}
+                                    
+                                        <input type='checkbox' name="superuser" {% ifequal user.is_marketer 1 %}checked{% endifequal %}> 
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                          Super User
+                                        </label>
+                                      </div>
+                                    </div>
+                                    </div>
+ 
+ 
+   
+                                  </div>
+
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-info">Update</button>
+ 
+                                  </div>
+ 
+                       
+        
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                        </div>
+                       </td>
+                    
+ 
+
+                      <td>
+                        <a class="btn btn-danger" href="{% url 'delete_user_accounts' pk=user.id %}" >Delete</a>
+                      </td>
+                      
+            
+       
+                      
+                    </tr>
+      
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+
+
+  
+
+{% endif %}
+
+{% endblock aberd %}

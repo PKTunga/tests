@@ -1,0 +1,130 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+{% block vps %} active {% endblock vps %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+      <h3 style="text-transform: uppercase;">Sell Template</h3>
+
+    </div>
+
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+     <hr>
+      
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-10">
+
+
+
+      <h4>Make Template Available On Sellers' page</h4>
+
+
+
+
+
+
+
+
+
+
+
+      <div class="card">
+       
+        <div class="card-body">
+          <div>
+           
+            <form action="{% url 'edit_sell_template_to_sellers' pk=form.instance.id %}" method="post">
+              {% csrf_token %}
+              {% crispy form %}
+    
+            </form>
+          </div>
+  
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+  {% endblock %}
+
+
+
+  {% block extra_js %}
+  <script>
+    $(document).ready( function () {
+      $('#dataTable').DataTable({
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      });
+      $('#dataTable2').DataTable(
+        {
+          select: true,
+          dom: "Bfrtip",
+          autoWidth : true,
+          responsive: true,
+        }
+      );
+
+  } );
+  </script>
+  
+  
+  {% endblock %}

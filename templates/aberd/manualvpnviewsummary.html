@@ -1,0 +1,148 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block active_manual_vpn %} 
+
+active
+
+{% endblock active_manual_vpn %} 
+
+{% load humanize %}
+{% block aberd %}
+
+{% if request.user.is_admin %}
+
+
+
+
+
+
+<div class="row">
+    <div class="col-lg-12">
+
+        
+        <div class="row mt-2 mb-3">
+            <div class="col-2">
+
+            </div>
+            <div class="col-12">
+              <h2 class="title-1 m-b-25">Manual VPN</h2>
+
+              <form action="{% url 'manual_vpn' %}" method="post" class="mb-5" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% crispy manual_proxyform %}
+
+
+              </FORM>
+        
+
+            </div>
+          </div>
+
+        <div class="table-responsive table--no-card m-b-40">
+      
+          <table class="table table-borderless table-striped table-earning table-sm" id="dataTable">
+            <thead>
+
+                   
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Template</th>
+                <th> Download VPN Client</th>
+                <th>Download VPN Profile</th>
+
+                <th>VPN User</th>
+                <th>VPN Password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for vps in man_proxies %}
+              <tr>
+                <form action="" method="post">
+
+                  {% csrf_token %}
+                  <td>{{forloop.counter}}</td>
+                  <td>
+                    
+                 
+                    {{vps.template}}
+
+                
+
+                   </td>
+                  <td>
+                    
+                    {% if vps.vpn_file %}
+                  
+                    <a href="{{ vps.vpn_file.url }}" download> Download Client</a>
+                  
+                    {% endif %}
+                  </td>
+                  <td>
+                   
+
+                    {% if vps.vpn_key %}
+                  
+                    <a href="{{ vps.vpn_key.url }}" download> Download Profile</a>
+                  
+                    {% endif %}
+                  
+                  </td>
+
+                 
+                  <td>
+                    
+                 
+                    {{vps.instance_user}}
+
+                
+
+                   </td>
+
+
+
+                                  
+                   <td>
+                    
+                 
+                    {{vps.instance_password}}
+
+                
+
+                   </td>
+            
+                   <td>
+                    
+                    <a class="btn btn-danger" href="{% url 'edit_manual_vpn' pk=vps.id %}" >Edit</a>
+                  </td>
+             
+          
+                  <td>
+                    
+                    <a class="btn btn-danger" href="{% url 'delete_vps' pk=vps.id page=5 %}" >Delete</a>
+                  </td>
+                </form>
+
+                
+              </tr>
+
+              {% endfor %}
+           
+            </tbody>
+          </table>
+        </div>
+    </div>
+
+
+  
+</div>
+
+
+
+{% endif %}
+
+{% endblock aberd %}

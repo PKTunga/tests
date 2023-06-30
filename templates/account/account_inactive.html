@@ -1,0 +1,12 @@
+{% extends "account/base.html" %} {% load socialaccount %}
+{% block head_title %} Account Inactive {% endblock %}
+{% load i18n %}
+{% load crispy_forms_tags %} {% block title %} Account Inactive {% endblock %}
+{% load i18n %}
+
+
+{% block content %}
+<h1>{% trans "Account Inactive" %}</h1>
+
+<p>{% trans "This account is inactive." %}</p>
+{% endblock %}

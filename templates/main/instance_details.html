@@ -1,0 +1,141 @@
+
+{% extends 'base.html' %}
+{% load static %} 
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+
+{% block home %} active {% endblock home %}
+
+
+{% block content %}
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-3">
+
+    </div>
+
+
+    <div class="col-6">
+
+      {{ response }}
+
+
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <i class="fas fa-text-width"></i>
+            Instance Details
+          </h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body clearfix">
+          <blockquote class="quote-secondary">
+        
+            <p>Status</p>
+            <small>{{ vps.status }} <cite title="Source Title">Source Title</cite></small>
+          </blockquote>
+
+          <dl>
+            <dt>User</dt>
+            <dd>{{ vps.user.username }}. {{ vps.password }}</dd>
+            <dt>Instance Id</dt>
+            <dd>{{ vps.instance_id  }}</dd>
+            <dd>.</dd>
+            <dt>Date created </dt>
+            <dd>{{ vps.date_created }}</dd>
+          </dl>
+        </div>
+
+        <!-- /.card-body -->
+      </div>
+ 
+
+  </div>
+</div>
+
+
+<div class="modal fade" id="modal-lg-vps">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Vps</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{% url 'superuser_add_vps' %}" method="post">
+     
+
+        </form>
+     
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-lg-proxy">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Proxy</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{% url 'superuser_add_proxy' %}" method="post">
+   
+
+        </form>
+     
+
+      </div>
+
+    </div>
+  </div>
+</div>
+  {% endblock %}
+
+
+
+
+  {% block extra_js %}
+<script>
+  $(document).ready( function () {
+    $('#dataTable').DataTable({
+      select: true,
+      dom: "Bfrtip",
+      autoWidth : true,
+      responsive: true,
+    });
+    $('#dataTable2').DataTable(
+      {
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      }
+    );
+    $('#dataTable3').DataTable(
+      {
+        select: true,
+        dom: "Bfrtip",
+        autoWidth : true,
+        responsive: true,
+      }
+    );
+} );
+</script>
+
+
+{% endblock %}

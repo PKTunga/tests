@@ -1,0 +1,100 @@
+{% extends 'aberd/base.html' %} {% load static %} {% load crispy_forms_tags %} {% load
+humanize %} {% block vps %} active {% endblock vps %} {% block aberd %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      <h3 style="text-transform: uppercase">Templates</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      <hr />
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1"></div>
+
+    <div class="col-10">
+      <div class="card">
+        <div class="card-body">
+          <div>
+            <div class="row">
+              <div class="col-2">
+                <a href="{% url 'templates_add' %}" class="btn btn-block mt-2"
+                  >Add Template</a
+                >
+              </div>
+              <div class="col-8"></div>
+            </div>
+            <table class="table table-striped table-sm" id="dataTable">
+              <thead>
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Template Name</th>
+                  <th>Template ID</th>
+                  <th>Cost</th>
+                  <th>Super Users</th>
+
+                  <th>Date Added</th>
+                  {% comment %}
+                  <th>Added By</th>
+                  {% endcomment %}
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for vps in templates %}
+                <tr>
+                  <td>{{ vps.id }}</td>
+                  <td>{{vps.template_name}}</td>
+                  <td>{{vps.template_id}}</td>
+                  <td>{{vps.cost }}</td>
+                  <td>
+                    {% for user in vps.super_user.all %} {{user}} {% endfor %}
+                  </td>
+                  <td>{{ vps.date_created | date }}</td>
+                  {% comment %}
+                  <td>{{ vps.created_by }}</td>
+                  {% endcomment %}
+                  <td>
+                    <a
+                      class="btn btn-danger"
+                      href="{% url 'templates_edit' pk=vps.id %}"
+                      >Edit</a
+                    >
+
+                    <a
+                      class="btn btn-danger"
+                      href="{% url 'templates_delete' pk=vps.id %}"
+                      >Delete</a
+                    >
+                  </td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block extra_js %}
+<script>
+  $(document).ready(function () {
+    $("#dataTable").DataTable();
+  });
+</script>
+
+{% endblock %}

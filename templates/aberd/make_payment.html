@@ -1,0 +1,52 @@
+
+{% extends 'aberd/base.html' %}
+{% load static %} 
+{% load humanize %}
+{% load crispy_forms_tags %}
+
+{% block active_payment_details_spu %} active {% endblock active_payment_details_spu %} 
+
+
+
+
+{% block aberd %}
+
+
+
+<div class="container-fluid">
+
+
+  <h2 class="title-1 m-b-25">Payment Details</h2>
+  <div class="row">
+
+    <div class="col-1">
+
+    </div>
+
+
+    <div class="col-9">
+
+  
+        <div class="card">
+  
+          <div class="card-body">
+            <img class="img-fluid pad" src="{{obj.banner_file.url}}" alt="Payment Info">
+		
+        </div>
+   
+    </div>
+
+    <div class="col-3">
+
+
+
+    </div>
+
+  </div>
+</div>
+
+
+  {% endblock %}
+
+
+

@@ -1,0 +1,99 @@
+{% extends 'aberd/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% load humanize %}
+
+
+{% block active_home_cp_proxy %} 
+
+active
+
+{% endblock active_home_cp_proxy %} 
+{% block aberd %}
+
+{% if request.user.is_admin %}
+<div class="row">
+    <div class="col-md-12">
+        <div class="overview-wrap">
+            <h2 class="title-1">overview</h2>
+            <button class="au-btn au-btn-icon au-btn--blue">
+                {% comment %} <i class="zmdi zmdi-shopping-cart"></i>Buy Proxy / VPN / VPS</button> {% endcomment %}
+        </div>
+    </div>
+</div>
+<div class="row m-t-25">
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c1">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                    <div class="text">
+                        <a href="{% url 'superuser_accounts' %}"><h2>{{ users }}</h2></a>
+                        <span>Users </span>
+                    </div>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c2">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                    <div class="text">
+                        <h2>{{ vps }}</h2>
+                        <span>VPS</span>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c3">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                    <div class="text">
+                        <h2>{{ proxies }}</h2>
+                        <span>Proxies</span>
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="overview-item overview-item--c4">
+            <div class="overview__inner">
+                <div class="overview-box clearfix">
+                    <div class="icon">
+                        <i class="zmdi zmdi-account-o"></i>
+                    </div>
+                    <div class="text">
+                        <h2>{{ vpn }}</h2>
+                        <span>VPN</span>
+                    </div>
+                </div>
+         
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endif %}
+
+{% endblock aberd %}
