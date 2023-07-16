@@ -1,3 +1,3 @@
-ご登録ありがとうございます。
-登録を続けるには、以下のリンクをクリックしてください。
+Thank you for registering.
+To continue with the registration, please click on the following link.
 {{ activate_url }}

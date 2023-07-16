@@ -1,4 +1,4 @@
-{% extends 'aberd/base.html' %}
+{% extends 'aberd/userbase.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -18,41 +18,36 @@
         </div>
     </div>
 </div>
-<div class="row m-t-25">
+<div class="row m-t-25" style="width: 100%; display: flex;justify-content: space-between; align-content: center;">
 
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-3" style="min-width: 30vw;">
         <div class="overview-item overview-item--c2">
-            <div class="overview__inner">
-                <div class="overview-box clearfix">
+            <div class="overview__inner" >
+                <div class="overview-box clearfix" style="display: flex; align-items: center; justify-content: center;">
                     <div class="icon">
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
-                    <div class="text">
-                        <h2>{{ vpses }}</h2>
-                        <span>VPS</span>
+                    <div class="text" >
+                        <h2>{{ vpses }} VPS</h2>
                     </div>
                 </div>
              
             </div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-3" style="min-width: 30vw;">
         <div class="overview-item overview-item--c3">
-            <div class="overview__inner">
-                <div class="overview-box clearfix">
+                <div class="overview-box clearfix" style="display: flex; align-items: center; justify-content: center;">
                     <div class="icon">
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
                     <div class="text">
-                        <h2>{{ proxies }}</h2>
-                        <span>Proxies</span>
+                        <h2>{{ proxies }} PROXIES</h2>
                     </div>
                 </div>
-           
-            </div>
         </div>
     </div>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-3" style="min-width: 30vw;">
         <div class="overview-item overview-item--c4">
             <div class="overview__inner">
                 <div class="overview-box clearfix">
@@ -60,8 +55,7 @@
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
                     <div class="text">
-                        <h2>{{ vpnes }}</h2>
-                        <span>VPN</span>
+                        <h2>{{ vpnes }} VPN</h2>
                     </div>
                 </div>
          

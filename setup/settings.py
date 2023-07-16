@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-_2fn5g8c+aco0kv$)x5*4!g-wpe*9tnr3t8g*#o0=qp=46e1-%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [ 'www.goldvpsproxy.in','167.235.154.97', 'goldvpsproxy.in', '127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = [ 'www.goldvpsproxy.in','167.235.154.97', 'goldvpsproxy.in', '127.0.0.1', 'localhost', '78.47.56.34', 'proxyworld.in', 'www.proxyworld.in']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Application definition
@@ -150,7 +150,7 @@ SOCIALACCOUNT_PROVIDERS = {
 DATABASES = {
    'default': {
        'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': BASE_DIR / 'db9e.sqlite3',
+       'NAME': BASE_DIR / 'db9e2.sqlite3',
    },
 
     # 'default': {
@@ -230,6 +230,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticroot")
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+ACCOUNT_ADAPTER = 'authenticate.adapter.AccountAdapter'
+ADMIN_LOGIN_REDIRECT_URL = '/control_panel'
+SU_LOGIN_REDIRECT_URL = '/user_home'
+
+
 LOGIN_REDIRECT_URL = '/'
 SIGNUP_REDIRECT_URL = '/profile'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
@@ -269,12 +274,11 @@ CRONJOBS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'goldvpsproxy@gmail.com'
-EMAIL_HOST_PASSWORD = 'tyiuqffggaraylfj'
+EMAIL_HOST_USER = 'proxykeyworld@gmail.com'
+EMAIL_HOST_PASSWORD = 'pernztrhsmyiqovc'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'goldvpsproxy@gmail.com'
-
+DEFAULT_FROM_EMAIL = 'proxykeyworld@gmail.com'
 
 PAYTM_MERCHANT_ID = 'rUYIOW19577396738636'
 PAYTM_SECRET_KEY = 'NxZfLdne@D_0sRc7'

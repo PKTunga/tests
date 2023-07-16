@@ -11,9 +11,9 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>GOLD VPS PROXY SERVICES </title>
+  <title>PROXY WORLD </title>
   <meta content="" name="description">
-  <meta content="" name="GOLD VPS PROXY SERVICES India">
+  <meta content="" name="PROXY WORLD">
 
   <!-- Favicons -->
   {% comment %} <link href="{% static 'ii/img/favicon.png' %}" rel="icon"> {% endcomment %}
@@ -76,6 +76,7 @@
     .my-floater{
       margin-top:16px;
     }
+    
   
   </style>
 
@@ -100,9 +101,9 @@
 
 
     <!-- ======= Why Us Section ======= -->
-    <section id="why-us" class="why-us">
+    <section id="why-us" class="why-us" style="margin-top: 70px;">
       <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-          <h1 class="display-4">Packages</h1>
+          <h1 class="display-4" style="font-family: Open Sans; font-weight: 500">Packages</h1>
         </div>
     
         <div class="container">
@@ -112,34 +113,57 @@
 
 
 
-            {% for package in packages %}
-
-            <div class="col-md-3">
-
-                <div class="card mb-4 box-shadow">
-                    <div class="card-header">
-                      <h4 class="my-0 font-weight-normal" style="color:black;">{{ package.title | title }}</h4>
+            <div class="container">
+              <!-- card start -->
+              <div class="row" style="display: flex; justify-content: center">
+                {% for package in packages %}
+                <div
+                  class="col-md-6 col-lg-3 col-11 my-2 package--wraper"
+                  data-category="{{ package.template.obj_type }}"
+                >
+                  <div class="card mb-4 box-shadow package--wrapper">
+                    <div class="package--header package--btn">
+                      <h2
+                        class="my-0"
+                        style="
+                          color: rgba(23, 21, 21, 0.778);
+                          font-family: Poppins;
+                          font-size: 1.2rem;
+                        "
+                      >
+                        {{ package.title | title }}
+                      </h2>
+                      <div class="px-3 hr"></div>
                     </div>
-                    <div class="card-body">
-                      <h1 class="card-title pricing-card-title" style="color:black;">Rs.{{ package.price | intcomma }} </h1>
-                      <ul class="list-unstyled mt-3 mb-4" style="color:black;">
-
-                        {{ package.features |linebreaks}}
+                    <div class="package-card-body">
+                      <h2
+                        class="card-title pricing-card-title text-center"
+                        style="color: #592bd6; font-family: Poppins"
+                      >
+                        Rs.{{ package.price | intcomma }}
+                      </h2>
+                      <ul
+                        class="list-unstyled text-center mt-3 mb-3"
+                        style="color: black; font-family: Source Sans 3"
+                      >
+                        {{ package.features | linebreaks}}
                       </ul>
-                    
-                      
-                      
-                    <div class="card-footer">
-                          <a href="{% url 'buy' pk=package.id %}" class="btn btn-outline-info btn-lg" style="color:black;">Buy Now</a>
-
-                        </div>
+                    </div>
+                    <div class="card-footer package--btn">
+                      <a
+                        href="{% url 'buy' pk=package.id %}"
+                        class="package--button btn-lg"
+                        style="color: whitesmoke"
+                        >Buy Now</a
+                      >
                     </div>
                   </div>
+                </div>
+                {% endfor %}
+              </div>
+    
+              <!-- card end -->
             </div>
-
-
-
-            {% endfor %}
 
 
           </div>

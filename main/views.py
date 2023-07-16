@@ -24,6 +24,7 @@ from utils.ec2 import get_client
 from django.db.models import Q
 from main.models import Accounts, AccountLogs
 from packages.models import Packages
+from authenticate.models import DailyNews,Video
 from utils.ssh_connect import generate_key, update_password_port_user
 from datetime import timezone
 from .forms import ContactForm
@@ -34,13 +35,24 @@ from authenticate.models import WhatsappNumber, BannerMessage
 def index(request):
     user, new = WhatsappNumber.objects.get_or_create(id=1)
     banner, new = BannerMessage.objects.get_or_create(id=1)
+    
+    try:
+        latest_video = Video.objects.latest("published_date")
+        videoid = latest_video.video_id
+    except Video.DoesNotExist:
+        videoid = None
+    
     context = {
         'form': ContactForm(),
         'packages': Packages.objects.all(),
+        "dailyupdate": DailyNews.objects.latest("published_date").content,
+        "videoid": videoid,
         'banner': banner,
         'whatapplink': f"https://wa.me/{user.number}"
     }
+    
     return render(request, 'landing/i.html', context)
+
 @login_required
 def packages(request):
     context = {
@@ -51,6 +63,7 @@ def packages(request):
 
 from packages.forms import ApplyCouponForm
 
+@login_required
 def buy(request, pk):
     context = {
         'package': Packages.objects.get(id=pk),

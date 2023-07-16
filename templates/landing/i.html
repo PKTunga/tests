@@ -6,9 +6,9 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-    <title>GOLD VPS PROXY SERVICES</title>
+    <title>PROXY WORLD</title>
     <meta content="" name="description" />
-    <meta content="" name="GOLD VPS PROXY SERVICES India" />
+    <meta content="" name="PROXY WORLD India" />
 
     <!-- Favicons -->
     {% comment %}
@@ -22,6 +22,13 @@
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
 
@@ -63,6 +70,9 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/fontawesome.min.css"
     />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Template Main CSS File -->
     <link href="{% static 'ii/css/style.css' %}" rel="stylesheet" />
     <style>
@@ -103,52 +113,231 @@
       .my-floater {
         margin-top: 16px;
       }
+      .home--page--top {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        /* padding: 70px 0 30px 0 ; */
+      }
     </style>
-    <!-- =======================================================
-  * Template Name: Restaurantly - v3.8.0
-  * Template URL: https://bootstrapmade.com/restaurantly-restaurant-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
   </head>
 
   <body>
     {% include 'includes/header.html' %}
 
     <!-- ======= Hero Section ======= -->
-    <section class="" style="min-height: 70vh" id="hero">
+    <section style="min-height: 50vh" id="hero">
       <div
         class="container position-relative text-center text-lg-start d-flex flex-column"
-        style="padding-top: 250px"
+        style="margin-top: 80px"
       >
+        <!-- daily updates -->
         <div class="row">
-          <div class="col-lg-12">
-            <h1>Extra Ordinally <span>Digital</span> Experiences</h1>
-            <h2>
-              We provide fast, reliable Vps, Proxies and Vpn. Our prices are
-              competitive!
-            </h2>
-            <div class="btns">
-              <a
-                href="{% url 'buy_now' %}"
-                class="btn-book animated fadeInUp scrollto"
-                >Buy Now!</a
-              >
+          <div class="col-lg-12" style="display: flex">
+            <div class="row">
+              <!-- hero text -->
+              <div class="col-lg-8 mb-3">
+                <div class="home--page--top">
+                  <h1>Extraordinary <span>Digital</span> Experiences</h1>
+                  <h2
+                    class="my-3"
+                    style="font-family: Poppins; font-size: 1.1rem"
+                  >
+                    We provide fast, reliable Vps, Proxies and Vpn. Our prices
+                    are competitive!
+                  </h2>
+                  <div class="btns">
+                    <a
+                      href="{% url 'buy_now' %}"
+                      class="btn-book animated fadeInUp scrollto"
+                      >Buy Now!</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <!-- updates -->
+              <div class="col-lg-4">
+                <div class="home--page--top-3" style="padding: 5px">
+                  <h1 style="font-size: 1.5rem; font-weight: 600">
+                    Daily News Update
+                  </h1>
+                  <div class="update--wrapper">
+                    <p style="font-size: 1rem">
+                      {{ dailyupdate | linebreaks }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- end -->
             </div>
           </div>
         </div>
 
-        <div class="row" style="padding-top: 110px; margin-bottom: 10px">
+        <!-- banner -->
+        <div class="row" style="margin-bottom: 10px">
           <div class="col-lg-12">
-            <h1>{{ banner.header | title }}</h1>
-            <h1 style="font-size: 22px">
-              <span>{{ banner.subtext | title }}</span>
-            </h1>
+            <div class="home--page--top-2">
+              <h1 style="font-size: 1.5rem">{{ banner.header | title }}</h1>
+              <h1 style="font-size: 1.4rem">
+                <span>{{ banner.subtext | title }}</span>
+              </h1>
+            </div>
           </div>
         </div>
+        <!-- banner end -->
       </div>
     </section>
     <!-- End Hero -->
+
+    <section class="container">
+      <!-- summary -->
+      <div class="row" style="display: flex; justify-content: center">
+        <!-- security -->
+        <div class="col-md-6 col-lg-4 col-11 my-2">
+          <div class="summary--card">
+            <img src="{% static 'ii/img/summary/security.png' %}" />
+            <p class="summary--title">Security</p>
+            <p>
+              All traffic is routed exclusively through our network and no third
+              party computers are utilized. <br />
+              Better configurations leads to better speed and reliability
+            </p>
+            <div class="">
+              <a
+                href="#"
+                class="summary--button btn-lg"
+                style="color: whitesmoke; background: #fb9d46"
+                >LEARN MORE</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- speed -->
+        <div class="col-md-6 col-lg-4 col-11 my-2">
+          <div class="summary--card">
+            <img src="{% static 'ii/img/summary/speedometer.png' %}" />
+            <p class="summary--title">Speed</p>
+            <p>
+              Our architecture is unique to provide residential proxies with one
+              hop connectivity to the target site. In addition, the traffic has
+              no bottleneck in the traffic.
+            </p>
+            <div class="">
+              <a
+                href="#"
+                class="summary--button btn-lg"
+                style="color: whitesmoke; background: #00d200"
+                >LEARN MORE</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- quality -->
+        <div class="col-md-6 col-lg-4 col-11 my-2">
+          <div class="summary--card">
+            <img src="{% static 'ii/img/summary/speed.svg' %}" />
+            <p class="summary--title">Quality</p>
+            <p>
+              We guarantee the quality of our service, as all our servers are on
+              major internet routes or at ISP network connectivity points that
+              are controlled by our Network.
+            </p>
+            <div class="">
+              <a
+                href="#"
+                class="summary--button btn-lg"
+                style="color: whitesmoke; background: #fb9d46"
+                >LEARN MORE</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- end summary -->
+
+      <!-- About section -->
+      <div
+        class="d-flex flex-column text-center hero--about"
+        style="margin-bottom: 10px"
+      >
+        <h3 class="about--top">
+          CHOOSE THE BIGGEST DEDICATED INDIAN PROXY NETWORK
+        </h3>
+        <h2 class="about--main">
+          We are the BIGGEST <br />
+          proxy service provider with unlimited network power and customization
+          possibilities
+        </h2>
+        <p class="about--bottom">
+          We are the biggest proxy network provider with unlimited bandwidth.
+          Our networks are monitored and provided with real time support and
+          assistance.
+        </p>
+        <div class="about--button--wrapper">
+          <a
+            href="{% url 'buy_now' %}"
+            class="about--button"
+            style="color: whitesmoke; background: #fb9d46"
+            >GET STARTED NOW</a
+          >
+        </div>
+      </div>
+      <!-- end about -->
+
+      <!-- more about with tutorial; -->
+      <div class="about--tutorial">
+        <!-- text -->
+        <div class="about--text">
+          <div>
+            <h2 style="font-family: Open Sans">
+              Buy your Dedicated Proxy TODAY
+            </h2>
+            <p style="font-family: Open Sans">
+              We provide cyber and web intelligence companies with a proxy
+              service that collects data anonymously and infinitely from any
+              public online sources. In addition to our solutions that use real
+              users’ IP addresses, our USP is the speed, quality and privacy of
+              our solution.
+            </p>
+            <div class="about--but--wrapper">
+              <a
+                href="{% url 'buy_now' %}"
+                class="about--but"
+                style="color: whitesmoke; background: #fb9d46"
+                >GET STARTED NOW</a
+              >
+            </div>
+          </div>
+        </div>
+        <!-- video -->
+        <div class="about--video">
+          <!-- YouTube video -->
+          {% if videoid %}
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/{{ videoid }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          {% else %}
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/VIDEO_ID"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- end tutorial video -->
+    </section>
 
     <main id="main">
       <!-- ======= Why Us Section ======= -->
@@ -160,42 +349,21 @@
           </div>
 
           <div class="row">
-            <div class="col-lg-4 boxy">
+            <div class="col-lg-4 mt-4 mt-lg-0 boxy">
               <div class="box" data-aos="zoom-in" data-aos-delay="100">
-                <span>VPS</span>
-                {% comment %}
-                <h4>Lorem Ipsum</h4>
-                <p>
-                  Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et
-                  consectetur ducimus vero placeat
-                </p>
-                {% endcomment %}
+                <span class="category" data-category="vps">VPS</span>
               </div>
             </div>
 
             <div class="col-lg-4 mt-4 mt-lg-0">
               <div class="box" data-aos="zoom-in" data-aos-delay="200">
-                <span>PROXIES</span>
-                {% comment %}
-                <h4>Repellat Nihil</h4>
-                <p>
-                  Dolorem est fugiat occaecati voluptate velit esse. Dicta
-                  veritatis dolor quod et vel dire leno para dest
-                </p>
-                {% endcomment %}
+                <span class="category" data-category="proxy">PROXIES</span>
               </div>
             </div>
 
             <div class="col-lg-4 mt-4 mt-lg-0">
               <div class="box" data-aos="zoom-in" data-aos-delay="300">
-                <span>VPN</span>
-                {% comment %}
-                <h4>Ad ad velit qui</h4>
-                <p>
-                  Molestiae officiis omnis illo asperiores. Aut doloribus vitae
-                  sunt debitis quo vel nam quis
-                </p>
-                {% endcomment %}
+                <span class="category" data-category="vpn">VPN</span>
               </div>
             </div>
           </div>
@@ -208,48 +376,71 @@
         <div
           class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center"
         >
-          <h1 class="display-4">Packages</h1>
+          <h3
+            class="display-4"
+            style="font-family: Open Sans; font-weight: 500"
+          >
+            Packages
+          </h3>
+        </div>
+
+        <!-- meg -->
+        <div class="container">
+          <div class="no-packages-message" style="display: none">
+            No packages available for this category.
+          </div>
         </div>
 
         <div class="container">
-          <div class="row">
+          <!-- card start -->
+          <div class="row" style="display: flex; justify-content: center">
             {% for package in packages %}
-
-            <div class="col-md-3">
-              <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                  <h4 class="my-0 font-weight-normal" style="color: black">
+            <div
+              class="col-md-6 col-lg-3 col-11 my-2 package--wraper"
+              data-category="{{ package.template.obj_type }}"
+            >
+              <div class="card mb-4 box-shadow package--wrapper">
+                <div class="package--header package--btn">
+                  <h2
+                    class="my-0"
+                    style="
+                      color: rgba(23, 21, 21, 0.778);
+                      font-family: Poppins;
+                      font-size: 1.2rem;
+                    "
+                  >
                     {{ package.title | title }}
-                  </h4>
+                  </h2>
+                  <div class="px-3 hr"></div>
                 </div>
-                <div class="card-body">
-                  <h1
+                <div class="package-card-body">
+                  <h2
                     class="card-title pricing-card-title text-center"
-                    style="color: black"
+                    style="color: #592bd6; font-family: Poppins"
                   >
                     Rs.{{ package.price | intcomma }}
-                  </h1>
+                  </h2>
                   <ul
-                    class="list-unstyled text-center mt-3 mb-4"
-                    style="color: black; font-family: Britannic Bold"
+                    class="list-unstyled text-center mt-3 mb-3"
+                    style="color: black; font-family: Source Sans 3"
                   >
-                    {{ package.features |linebreaks}}
+                    {{ package.features | linebreaks}}
                   </ul>
                 </div>
-
-                <div class="card-header">
+                <div class="card-footer package--btn">
                   <a
                     href="{% url 'buy' pk=package.id %}"
-                    class="btn btn-outline-info btn-lg"
-                    style="color: black"
+                    class="package--button btn-lg"
+                    style="color: whitesmoke"
                     >Buy Now</a
                   >
                 </div>
               </div>
             </div>
-
             {% endfor %}
           </div>
+
+          <!-- card end -->
         </div>
       </section>
       <!-- End Why Us Section -->
@@ -265,6 +456,31 @@
       ><i class="bi bi-arrow-up-short"></i
     ></a>
 
+    <script>
+      $(document).ready(function () {
+        $(".category").on("click", function () {
+          var selectedCategory = $(this).data("category");
+
+          // Show/hide package wrappers based on category
+          var visiblePackages = $(".package--wraper").filter(function () {
+            var packageCategory = $(this).data("category");
+            return (
+              selectedCategory === packageCategory || selectedCategory === "all"
+            );
+          });
+
+          if (visiblePackages.length > 0) {
+            $(".package--wraper").hide();
+            visiblePackages.show();
+            $(".no-packages-message").hide();
+          } else {
+            $(".package--wraper").hide();
+            $(".no-packages-message").show();
+          }
+        });
+      });
+    </script>
+
     <!-- Vendor JS Files -->
     <script src="{% static 'ii/vendor/aos/aos.js' %}"></script>
     <script src="{% static 'ii/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -277,6 +493,8 @@
     <script src="{% static 'ii/js/main.js' %}"></script>
     <!--Start of Tawk.to Script-->
     {% comment %}
+    <script src="{% static 'jquery.min.js' %}"></script>
+
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();

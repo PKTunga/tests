@@ -54,11 +54,15 @@ def login(request):
             # print(next_)
             # if next_ is not None and next_ is not "":
             #     return redirect(next_)
+
             
             user = CustomUser.objects.get(username=username)
-            if user.is_admin:
+            if 'next' in request.POST:
+                return redirect(
+                    request.POST['next']
+                )
+            elif user.is_admin:
                 return redirect(reverse('control_panel'))
-
             else:
                 return redirect(reverse('superuser_home'))
         messages.success(request, f'Username and Password provided did not match. Try again')

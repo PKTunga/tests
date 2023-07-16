@@ -10,6 +10,7 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
+  /* font-family: "Source Sans 3", sans-serif; */
   background-color: #673de6;
   color: #fff;
 }
@@ -131,7 +132,7 @@ h6 {
 /*--------------------------------------------------------------
 # Top Bar
 --------------------------------------------------------------*/
-#topbar {
+/* #topbar {
   height: 40px;
   font-size: 14px;
   transition: all 0.5s;
@@ -174,19 +175,17 @@ h6 {
   padding-right: 10px;
   color: rgba(255, 255, 255, 0.5);
   content: "/";
-}
+} */
 
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 #header {
-  /* background: rgba(12, 11, 9, 0.09); */
   background: #673de6;
-  /* border-bottom: 1px solid rgba(12, 11, 9, 0.6); */
   transition: all 0.5s;
   z-index: 997;
-  padding: 15px 0;
-  top: 40px;
+  /* padding: 6px 0; */
+  /* top: 15px; */
 }
 
 #header.header-scrolled {
@@ -465,24 +464,24 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  /* height: 90vh; */
   background: url("../../../media/banner.jpg") top center;
   background-size: cover;
   position: relative;
   padding: 0;
 }
 
-#hero:before {
+/* #hero:before {
   content: "";
   position: absolute;
   bottom: 0;
   top: 0;
   left: 0;
   right: 0;
-}
+} */
 
 #hero .container {
-  padding-top: 110px;
+  padding-top: 105px;
 }
 
 @media (max-width: 992px) {
@@ -511,7 +510,7 @@ h6 {
 }
 
 #hero .btns {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 #hero .btn-menu,
@@ -769,6 +768,255 @@ section {
   }
 }
 
+/* packages */
+.package--btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.package--header {
+  background: linear-gradient(to bottom, #f9c942, #f8b92b);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5px;
+  min-height: 10vh;
+}
+
+.package--header .hr {
+  width: 95%;
+  height: 1px;
+  margin: 3px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.package--button {
+  background: linear-gradient(to right, #673de6, #5b33d6);
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.package--button:hover {
+  background: linear-gradient(to right, #592bd6, #4e1dbd);
+}
+
+.package-card-body {
+  padding: 10px;
+}
+
+.summary--button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.package--wrapper {
+  align-content: center;
+  margin: 0 auto;
+  width: 90%;
+  transition: all 0.4s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 1400px) {
+  .package--wrapper {
+    width: 88%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .package--wrapper {
+    width: 90%;
+    /* background: #000; */
+  }
+}
+
+.package--wrapper:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+.no-packages-message {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.home--page--top-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.home--page--top-3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  /* padding: 90px 0 30px 0 ; */
+  border: 1px solid white;
+  border-radius: 4px;
+  /* background: orange; */
+}
+
+.summary--card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: whitesmoke;
+  color: black;
+  padding: 30px 5px;
+  font-family: Poppins;
+}
+
+.summary--card img {
+  margin: 10px 0 20px 0;
+  height: 70px;
+  width: 70px;
+}
+.summary--card .summary--title {
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+.update--wrapper {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: gold;
+}
+
+.hero--about {
+  margin: 90px 0;
+}
+@media screen and (min-width: 800px) {
+  .hero--about {
+    margin: 90px 10%;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .hero--about {
+    margin: 90px 15%;
+  }
+}
+.about--top {
+  font-weight: 900;
+  font-size: 1.05rem;
+}
+
+.about--main {
+  font-size: 2.3rem;
+}
+.about--bottom {
+  margin-bottom: 15px;
+}
+.about--main,
+.about--top,
+.about--bottom {
+  font-family: Open Sans;
+  margin: 10px 0;
+}
+.about--button--wrapper {
+  margin: 20px 0;
+}
+.about--button {
+  padding: 15px 20px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.about--tutorial {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 90px 0 0 0;
+}
+
+.about--text {
+  flex-basis: 50%;
+  max-width: 50%;
+  padding-right: 20px;
+}
+
+.about--video {
+  flex-basis: 50%;
+  max-width: 50%;
+  padding-left: 20px;
+}
+
+.about--but--wrapper {
+  margin: 15px 0;
+}
+
+.about--but {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  color: whitesmoke;
+  background: #fb9d46;
+}
+
+/* Media queries for responsiveness */
+
+@media (max-width: 767px) {
+  .about--tutorial {
+    flex-direction: column;
+    
+  }
+
+  .about--text,
+  .about--video {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .about--text,
+  .about--video {
+    flex-basis: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+}
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
@@ -875,7 +1123,7 @@ section {
 --------------------------------------------------------------*/
 .why-us .box {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-  transition: all ease-in-out 0.1s;
+  transition: all ease-in-out 0.3s;
   background-color: #f9c942;
   padding: 15px 5px;
   text-align: center;

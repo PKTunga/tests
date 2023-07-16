@@ -223,3 +223,19 @@ class WhatsappNumber(models.Model):
     number = models.CharField(_('Whatsapp Phone Number '), max_length=50, blank=True, null=True)
     link = models.CharField(_('Telegram Link'), max_length=150, blank=True, null=True, default="")
 
+
+class DailyNews(models.Model):
+    title = models.CharField(max_length=150)
+    content = models.TextField(max_length=500, default="Welcome to Proxy World")  # Set a maximum length of 500 characters
+    published_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    
+class Video(models.Model):
+    title = models.CharField(max_length=100)
+    video_id = models.CharField(max_length=30)
+    published_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
